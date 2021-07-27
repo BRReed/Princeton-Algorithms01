@@ -44,6 +44,12 @@ public class UF {
     }
 
     public static int getRoot(int a) {
+        /**
+         * Args:
+         *    a (int): starting index to get root in id[]
+         * Returns:
+         *    root of id[a]
+         */
         while (id[a] != a) {
             a = id[a];
         }
