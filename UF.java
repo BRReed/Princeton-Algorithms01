@@ -25,7 +25,7 @@ public class UF {
          * connects i to j, j to i
          */
         if(connected(i, j)) {
-            System.out.println(id[i] + " and " + id[j] + " are already connected");
+            System.out.println(i + " and " + j + " are already connected");
             return;
         }
         int iAmount = 0;
