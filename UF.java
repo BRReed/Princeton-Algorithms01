@@ -76,6 +76,8 @@ public class UF {
     public static boolean allConnected() {
         /**
          * check if all nodes are connected
+         * Returns:
+         *     (bool): true if all connected, else false
          */
         int j;
         int i = getRoot(0);
@@ -86,6 +88,23 @@ public class UF {
             }
         }
         return true;
+    }
+
+    public static int find(int i) {
+        /**
+         * Args:
+         *     i (int): starting index of query
+         * Returns:
+         *     (int): largest index connects to i
+         * finds largest index connected to index i
+         */
+        int m = getRoot(i);
+        for(int k=id.length-1; k >= 0; k--) {
+            if (getRoot(k) == m) {
+                return k;
+            }
+        }
+        return i;
     }
 
     public static int getRandomInt() {
@@ -110,6 +129,12 @@ public class UF {
         }
         for(int k=0; k<id.length; k++) {
             System.out.println(k + " " + id[k]);
+        }
+        System.out.println("*****");
+        int f;
+        for(int v=0; v<id.length; v++) {
+            f = getRoot(v);
+            System.out.println(f + " root of " + v);
         }
     }
 
