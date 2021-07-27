@@ -46,7 +46,9 @@ public class UF {
 
     public static void swap(int i, int j) {
         /**
-         * int i thing to be swapped, j swapped to
+         * Args:
+         *     i (int): value at index to be swapped
+         *     j (int): value at index to be swapped to
          */
         for (int k=0; k<id.length; k++) {
             if (id[k] == id[i]) {
