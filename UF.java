@@ -77,8 +77,11 @@ public class UF {
         /**
          * check if all nodes are connected
          */
-        for(int k = 0; k<id.length; k++) {
-            if (id[k] != id[0]) {
+        int j;
+        int i = getRoot(0);
+        for(int k=0; k<id.length; k++) {
+            j = getRoot(k);
+            if (j != i) {
                 return false;
             }
         }
