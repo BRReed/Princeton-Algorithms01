@@ -82,10 +82,17 @@ public class UF {
     }
 
     public static int getRandomInt() {
+        /**
+         * returns a random integer from 0 to the length of array id[]
+         */
         return ThreadLocalRandom.current().nextInt(0, id.length);
     }
 
     public static void main(String[] args) {
+        /**
+         * initializes array id[], then connects values at random indexes until
+         * all are connected
+         */
         initialize(10);
         int i;
         int j;
@@ -97,9 +104,7 @@ public class UF {
         for(int k=0; k<id.length; k++) {
             System.out.println(id[k]);
         }
-
-
-        }
+    }
 
 }
 
