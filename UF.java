@@ -28,33 +28,27 @@ public class UF {
             System.out.println(i + " and " + j + " are already connected");
             return;
         }
-        int iAmount = 0;
-        int jAmount = 0;
-        for(int k=0; k<id.length; k++) {
-            if (id[k] == id[i]) {
-                iAmount++;
-            } else if (id[k] == id[j]) {
-                jAmount++;
-            }
-        }
-        if (iAmount < jAmount) {
-            swap(i, j);
+        int k;
+        if (id[i] == i) {
+            k = getRoot(j);
+            id[k] = i;
+        } else if (id[j] == j) {
+            k = getRoot(i);
+            id[k] = j;
         } else {
-            swap(j, i);
+            int m;
+            k = getRoot(i);
+            m = getRoot(j);
+            id[m] = k;
         }
     }
 
-    public static void swap(int i, int j) {
-        /**
-         * Args:
-         *     i (int): value at index to be swapped
-         *     j (int): value at index to be swapped to
-         */
-        for (int k=0; k<id.length; k++) {
-            if (id[k] == id[i]) {
-                id[k] = id[j];
-            }
+    public static int getRoot(int a) {
+        while (id[a] != a) {
+            a = id[a];
         }
+        return a;
+
     }
 
     public static boolean connected(int i, int j) {
@@ -64,11 +58,9 @@ public class UF {
          * Returns:
          *     true if are connected, else false
          */
-        if (id[i] == id[j]) {
-            return true;
-        } else {
-            return false;
-        }
+        
+        
+        return false; //delete
     }
 
     public static boolean allConnected() {
