@@ -28,33 +28,33 @@ public class UF {
             System.out.println(i + " and " + j + " are already connected");
             return;
         }
-        int iAmount = 0;
-        int jAmount = 0;
-        for(int k=0; k<id.length; k++) {
-            if (id[k] == id[i]) {
-                iAmount++;
-            } else if (id[k] == id[j]) {
-                jAmount++;
-            }
-        }
-        if (iAmount < jAmount) {
-            swap(i, j);
+        int k;
+        if (id[i] == i) {
+            k = getRoot(j);
+            id[k] = i;
+        } else if (id[j] == j) {
+            k = getRoot(i);
+            id[k] = j;
         } else {
-            swap(j, i);
+            int m;
+            k = getRoot(i);
+            m = getRoot(j);
+            id[m] = k;
         }
     }
 
-    public static void swap(int i, int j) {
+    public static int getRoot(int a) {
         /**
          * Args:
-         *     i (int): value at index to be swapped
-         *     j (int): value at index to be swapped to
+         *    a (int): starting index to get root in id[]
+         * Returns:
+         *    root of id[a]
          */
-        for (int k=0; k<id.length; k++) {
-            if (id[k] == id[i]) {
-                id[k] = id[j];
-            }
+        while (id[a] != a) {
+            a = id[a];
         }
+        return a;
+
     }
 
     public static boolean connected(int i, int j) {
@@ -64,7 +64,9 @@ public class UF {
          * Returns:
          *     true if are connected, else false
          */
-        if (id[i] == id[j]) {
+        int a = getRoot(i);
+        int b = getRoot(j);
+        if (a == b) {
             return true;
         } else {
             return false;
@@ -74,13 +76,35 @@ public class UF {
     public static boolean allConnected() {
         /**
          * check if all nodes are connected
+         * Returns:
+         *     (bool): true if all connected, else false
          */
-        for(int k = 0; k<id.length; k++) {
-            if (id[k] != id[0]) {
+        int j;
+        int i = getRoot(0);
+        for(int k=0; k<id.length; k++) {
+            j = getRoot(k);
+            if (j != i) {
                 return false;
             }
         }
         return true;
+    }
+
+    public static int find(int i) {
+        /**
+         * Args:
+         *     i (int): starting index of query
+         * Returns:
+         *     (int): largest index connects to i
+         * finds largest index connected to index i
+         */
+        int m = getRoot(i);
+        for(int k=id.length-1; k >= 0; k--) {
+            if (getRoot(k) == m) {
+                return k;
+            }
+        }
+        return i;
     }
 
     public static int getRandomInt() {
@@ -104,7 +128,13 @@ public class UF {
             connect(i, j);
         }
         for(int k=0; k<id.length; k++) {
-            System.out.println(id[k]);
+            System.out.println(k + " " + id[k]);
+        }
+        System.out.println("*****");
+        int f;
+        for(int v=0; v<id.length; v++) {
+            f = getRoot(v);
+            System.out.println(f + " root of " + v);
         }
     }
 
