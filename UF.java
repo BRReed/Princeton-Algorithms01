@@ -109,7 +109,7 @@ public class UF {
             connect(i, j);
         }
         for(int k=0; k<id.length; k++) {
-            System.out.println(id[k]);
+            System.out.println(k + " " + id[k]);
         }
     }
 
