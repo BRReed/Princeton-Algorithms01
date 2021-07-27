@@ -64,9 +64,13 @@ public class UF {
          * Returns:
          *     true if are connected, else false
          */
-        
-        
-        return false; //delete
+        int a = getRoot(i);
+        int b = getRoot(j);
+        if (a == b) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean allConnected() {
